@@ -1,0 +1,24 @@
+{
+  "name": "bugbusters-cypress-hackathon",
+  "version": "1.0.0",
+  "description": "cypress hackathon for UI testing ",
+  "main": "index.js",
+  "scripts": {
+    "cypress": "cypress run --e2e",
+    "cypress:open": "cypress open --e2e"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrysKoum/BugBusters-Cypress-Hackathon.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrysKoum/BugBusters-Cypress-Hackathon/issues"
+  },
+  "homepage": "https://github.com/ChrysKoum/BugBusters-Cypress-Hackathon#readme",
+  "dependencies": {
+    "-": "^0.0.1",
+    "cypress": "^13.6.1",
+    "save-dev": "^0.0.1-security"
+  }
+}
