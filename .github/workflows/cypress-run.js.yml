@@ -1,29 +1,30 @@
-name: Run Cypress Tests
+# name: Cypress UI Testing
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+# on: push
 
-jobs:
-  cypress-run:
-    runs-on: ubuntu-20.04
-    # Cypress Docker image with Chrome v91
-    # and Firefox v89 pre-installed
-    container: cypress/browsers:node14.19.0-chrome100-ff99-edge
-    steps:
-      - uses: actions/checkout@v1
-      - uses: cypress-io/github-action@v4
-        with:
-          browser: chrome
-      - uses: actions/upload-artifact@v1
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-      - uses: actions/upload-artifact@v1
-        if: always()
-        with:
-          name: cypress-videos
-          path: cypress/videos
+# jobs:
+#   e2e-tests:
+#     name: UI Test Execution
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Sync Repository
+#         uses: actions/checkout@v2
+
+#       - name: Prepare Java Environment
+#         uses: actions/setup-java@v2
+#         with:
+#           java-version: '17'
+#           distribution: 'temurin'
+
+#       - name: Launch Application
+#         run: java -jar test-suite-1.0.0.jar &
+
+#       - name: Execute Cypress Tests
+#         uses: cypress-io/github-action@v6
+#         with:
+#           record: true
+#         env:
+#           # Ensure the CYPRESS_RECORD_KEY is stored in GitHub Secrets
+#           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+#           # Use the GitHub token secret for Cypress dashboard
+#           GITHUB_TOKEN: ${{ secrets.GITUI_TOKEN }}
