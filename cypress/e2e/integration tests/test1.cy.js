@@ -259,14 +259,10 @@ describe("Zero Quantity Error Handling", () => {
       cy.get("strong").eq(1).should("contain", "0"); // Price should be 0
     });
 
-    // Step 4: Click the cart icon to view the cart details.
-    cy.get(".cart-icon").click();
-    cy.get(".cart-preview").within(() => {
-      cy.get(".cart-items").children().should("have.length", 1);
-      cy.get(".product-name").eq(0).should("contain", "Cauliflower - 1 Kg");
-      cy.get(".amount").eq(0).should("contain", "0");
-      cy.get(".quantity").eq(0).should("contain", "0");
-    });
+    // Step 4: Check if 'PROCEED TO CHECKOUT' button is disabled.
+    cy.get(".action-block")
+      .contains("PROCEED TO CHECKOUT")
+      .should("be.disabled");
   });
 });
 
@@ -304,7 +300,10 @@ describe("Negative Quantity Error Handling", () => {
       cy.get("strong").eq(1).should("contain", "0"); // Price should be 0
     });
 
-    // Step 4: Click the cart icon to view the cart details.
+    // Step 4: Check if 'PROCEED TO CHECKOUT' button is disabled.
+    cy.get(".action-block")
+      .contains("PROCEED TO CHECKOUT")
+      .should("be.disabled");
 
   });
 });
