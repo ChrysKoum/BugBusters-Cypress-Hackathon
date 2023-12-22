@@ -18,7 +18,7 @@ jobs:
         with:
             # Starts web server for E2E tests - replace with your own server invocation
             # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
-            start: npm start
+            start: npm run test
             wait-on: 'http://localhost:3030' # Waits for above
             # Records to Cypress Cloud
             # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
