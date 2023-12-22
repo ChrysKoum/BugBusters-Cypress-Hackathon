@@ -7,7 +7,7 @@
     "start": "my-server -p 3030",
     "cy:run": "cypress run",
     "cy:open": "cypress open ",
-    "test": "start-server-and-test start http://localhost:3030 cy:run"
+    "test": "start http://localhost:3030 cy:run"
   },
   "repository": {
     "type": "git",
