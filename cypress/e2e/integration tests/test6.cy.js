@@ -7,13 +7,13 @@ beforeEach(() => {
   cy.visit(Cypress.env("url")); // URL to the homepage of the application
 });
 
-describe("Apply Promo Code at Checkout", () => {
+describe("Tset", () => {
   it("verifies that a promo code applies a discount", () => {
     const homePage = new HomePage();
     homePage.Checkout();
     
     
     cy.get("button").contains("Place Order").click();
-    cy.get("a").contain("Terms & Conditions"); 
+    cy.get("a").contains("Terms & Conditions"); 
   });
 });
