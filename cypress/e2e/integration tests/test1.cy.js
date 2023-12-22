@@ -207,10 +207,6 @@ describe("Quantity Update in cart", () => {
   });
 });
 
-/*
-    HERE WE CAN ALSO ADD TO CHECK THAT ARE THE 3 PRODUCTS 
-*/
-
 // Test Case ID: TC06
 // Test Case Title: Zero Quantity Error Handling=
 
