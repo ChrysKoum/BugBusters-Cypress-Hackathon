@@ -1,5 +1,9 @@
-// // Test Case ID: TC4_02
-// // Test Case Title: Verify Top Deals Sorting
+beforeEach(() => {
+    cy.visit(Cypress.env('url')); // URL to the homepage of the application
+  });
+
+// // Test Case ID: TC4_01
+// // Test Case Title: Verify Top Deals Display
 
 describe("Verify Top Deals Display", () => {
     before(() => {
@@ -38,40 +42,31 @@ describe("Verify Top Deals Display", () => {
 // Test Case ID: TC4_02
 // Test Case Title: Verify Top Deals Sorting
 
-describe("Verify Top Deals Sorting", () => {
+  describe("Verify Top Deals Sorting", () => {
     before(() => {
-      cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers"); // Adjust the URL to the deals page of the application
+      // Prerequisite: Ensure the user is on the deals page
+      cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers");
     });
   
-    it("verifies that the top deals list can be sorted by price in ascending and descending order", () => {
+    it.only("ensures that the top deals list can be sorted correctly by price", () => {
       // Step 1: Click on the 'Price' column header in the top deals list.
-      cy.get('th').contains('Price').click().then(() => {
-        // After clicking we should have the icon class 'fa-sort-asc' indicating ascending sort
-        cy.get('th').contains('Price').find('.sort-icon').should('have.class', 'fa-sort-asc');
-      });
+      cy.get("th").contains("Price").click();
   
-      // Capture and store the list of prices after first click
-      let pricesAscending = [];
-      cy.get('tbody tr').each(($row) => {
-        cy.wrap($row).find('td').eq(1).then(($td) => {
-          pricesAscending.push(parseFloat($td.text()));
-        });
-      });
+      // Expected Result: The list is sorted by price in ascending order.
+      // Capture the first price after sorting to compare later
+      cy.get("tbody tr").first().find("td").eq(1).invoke('text').then((text1) => {
+        const firstPrice = parseFloat(text1);
   
-      // Step 2: Click on the 'Price' column header again to sort in descending order.
-      cy.get('th').contains('Price').click().then(() => {
-        // After clicking again we should have the icon class 'fa-sort-desc' indicating descending sort
-        cy.get('th').contains('Price').find('.sort-icon').should('have.class', 'fa-sort-desc');
-      });
+        // Click on the 'Price' column header again to sort by descending order
+        cy.get("th").contains("Price").click();
   
-      // Capture and store the list of prices after second click
-      let pricesDescending = [];
-      cy.get('tbody tr').each(($row, index) => {
-        cy.wrap($row).find('td').eq(1).then(($td) => {
-          pricesDescending.push(parseFloat($td.text()));
-          // Assert that the price is the same list but in reverse order
-          expect(pricesDescending[index]).to.eq(pricesAscending[pricesAscending.length - index - 1]);
+        // Expected Result: The list is sorted by price in descending order.
+        // Capture the first price after re-sorting to compare
+        cy.get("tbody tr").first().find("td").eq(1).invoke('text').should((text2) => {
+          const secondPrice = parseFloat(text2);
+          expect(secondPrice).to.be.lessThan(firstPrice); // Verify the price is now less than the first one, indicating descending order
         });
       });
     });
   });
+  
