@@ -255,7 +255,7 @@ describe("Zero Quantity Error Handling", () => {
 
     // Step 3: Check the cart icon and total price.
     cy.get(".cart-info").within(() => {
-      cy.get("strong").eq(0).should("contain", "1"); // Items should be 0
+      cy.get("strong").eq(0).should("contain", "0"); // Items should be 0
       cy.get("strong").eq(1).should("contain", "0"); // Price should be 0
     });
 
@@ -300,18 +300,11 @@ describe("Negative Quantity Error Handling", () => {
 
     // Step 3: Check the cart icon and total price.
     cy.get(".cart-info").within(() => {
-      cy.get("strong").eq(0).should("contain", "1"); // Items should be 0
-      cy.get("strong").eq(1).should("contain", "-33300"); // Price should be 0
+      cy.get("strong").eq(0).should("contain", "0"); // Items should be 0
+      cy.get("strong").eq(1).should("contain", "0"); // Price should be 0
     });
 
     // Step 4: Click the cart icon to view the cart details.
-    cy.get(".cart-icon").click();
-    cy.get(".cart-preview").within(() => {
-      cy.get(".cart-items").children().should("have.length", 1);
-      cy.get(".product-name").eq(0).should("contain", "Cauliflower - 1 Kg");
-      cy.get(".amount").eq(0).should("contain", "-33300");
-      cy.get(".quantity").eq(0).should("contain", "-555");
-    });
 
   });
 });
