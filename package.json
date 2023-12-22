@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "cypress": "cypress run",
-    "cypress:open": "cypress open "
+    "cypress:open": "cypress open ",
+    "test:unit:ci": "vitest --run",
+    "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml}\"",
+    "types": "tsc --noEmit",
+    "build:ci": "cross-env CYPRESS_COVERAGE=true vite build"
   },
   "repository": {
     "type": "git",
