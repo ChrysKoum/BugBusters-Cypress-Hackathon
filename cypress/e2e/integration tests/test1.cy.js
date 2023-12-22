@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import HomePage from "../pageObject/HomePage";
 
 
@@ -5,6 +6,8 @@ import HomePage from "../pageObject/HomePage";
 // Test Case Title: Add Single Product to Cart
 
 
+=======
+>>>>>>> f3427b62f9dcbb5d969fd50cf4ed37256cd561c5
 beforeEach(() => {
   cy.visit(Cypress.env('url')); // URL to the homepage of the application
 });
@@ -213,10 +216,6 @@ describe("Quantity Update in cart", () => {
     });
   });
 });
-
-/*
-    HERE WE CAN ALSO ADD TO CHECK THAT ARE THE 3 PRODUCTS 
-*/
 
 // Test Case ID: TC06
 // Test Case Title: Zero Quantity Error Handling=

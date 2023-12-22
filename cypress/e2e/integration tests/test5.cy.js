@@ -4,16 +4,16 @@
 import HomePage from "../pageObject/HomePage";
 
 beforeEach(() => {
-  cy.visit(Cypress.env("url")); // URL to the homepage of the application
+  cy.visit(Cypress.env("url"));
 });
 
 describe("Apply Promo Code at Checkout", () => {
   it("verifies that a promo code applies a discount", () => {
     const homePage = new HomePage();
     homePage.Checkout();
-    // Test Step ID: 2.1
+   
     // Action: Enter a valid promo code and click 'Apply'.
-    cy.get(".promoCode").type("DISCOUNT20"); // Replace 'DISCOUNT20' with the actual promo code
+    cy.get(".promoCode").type("DISCOUNT20"); 
     cy.get(".promoBtn").click();
 
     // Expected Result: The discount is applied, and the total amount is updated to reflect the discount.
