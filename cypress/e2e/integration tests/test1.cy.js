@@ -1,16 +1,9 @@
+import HomePage from "../pageObject/HomePage";
+
+
 // Test Case ID: TC01
 // Test Case Title: Add Single Product to Cart
-// before(function() {
-//   cy.request('DELETE', 'http://localhost:7001/api/v1/contacts/delete');
-// });
 
-// beforeEach(function() {
-//   cy.visit(Cypress.env('url') + '#/contact');
-
-//   cy.fixture('example').then(function(data) {
-//     this.data = data;
-//   });
-// });
 
 beforeEach(() => {
   cy.visit(Cypress.env('url')); // URL to the homepage of the application
@@ -21,7 +14,7 @@ describe("Add Single Product to Cart", () => {
 // Test Case ID: TC01
 // Test Case Title: Add Single Product to Cart
 
-  it.only('allows a user to add Broccoli to the cart', () => {
+  it('allows a user to add Broccoli to the cart', () => {
     cy.wait(2000);
     // Step 1: Find 'Broccoli - 1 Kg' product on the product list.
     cy.get(".products .product").first().contains("Brocolli - 1 Kg");
@@ -355,3 +348,41 @@ describe("Add Multiple Product Categories to Cart in Tablet/Mobile view", () => 
   });
 });
 
+
+// Test Case ID: TC09
+// Test Case Title: Change Item Quantity to Zero in Cart
+
+describe("Change Item Quantity to Zero in Cart", () => {
+
+  it("Change Item Quantity to Zero in Cart", () => {
+    
+    // Prerequisite
+    const homePage = new HomePage();
+    homePage.addProductToCart();
+    cy.get(".cart-icon").click();
+    cy.get(".product-remove").first().click();
+    cy.get(".cart-preview").within(() => {
+      cy.get(".cart-item").should("have.length", 0);
+    });
+
+  });
+});
+
+// Test Case ID: TC10
+// Test Case Title: Change Item Quantity to Zero in Cart
+
+describe("Refresh page with items in the cart", () => {
+
+  it(" Refresh page with items in the cart and verify if they are still kept", () => {
+    
+    // Prerequisite
+    const homePage = new HomePage();
+    homePage.addProductToCart();
+
+    cy.reload()
+
+    cy.get(".cart-info").within(() => {
+      cy.get("strong").eq(0).should("contain", "1"); // Items should be 1
+    });
+  });
+});
