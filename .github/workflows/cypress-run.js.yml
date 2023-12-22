@@ -21,8 +21,6 @@ jobs:
 
       - name: Execute Cypress Tests
         uses: cypress-io/github-action@v6
-        with:
-          record: true
         env:
           # Ensure the CYPRESS_RECORD_KEY is stored in GitHub Secrets
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
