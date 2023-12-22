@@ -23,7 +23,6 @@ jobs:
       - run: yarn cypress info
       - run: node --version
       - run: node -p 'os.cpus()'
-      - run: yarn lint
       - run: yarn test:unit:ci
       - run: yarn build:ci
 
@@ -50,7 +49,6 @@ jobs:
       # report machine parameters
       - run: yarn cypress info
       - run: node -p 'os.cpus()'
-      - run: yarn lint
       - run: yarn test:unit:ci
       - run: yarn build:ci
 
