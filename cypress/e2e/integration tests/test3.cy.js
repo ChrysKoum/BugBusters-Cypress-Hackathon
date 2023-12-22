@@ -95,3 +95,19 @@ describe("Search with Numbers", () => {
     cy.get('.products-wrapper').should('contain', 'Sorry, no products matched your search!');
   });
 });
+
+// Test Case ID: TC03_07
+// Test Case Title: Search Product by Full Name but incorrect spelling
+
+describe("Search Product by Full Name With Incorrect Spelling", () => {
+  it.only("ensures that the search functionality returns empty when searching by product name", () => {
+    // Step 1: Enter 'Broccoli' in the search bar.
+    cy.get('.search-keyword').type('Broccoli');
+
+    // Step 2: Press the 'Search' button or hit enter.
+    cy.get('.search-button').click();
+
+    // Expected Result: A message indicating 'Sorry, no products matched your search!'.
+    cy.get('.products-wrapper').should('contain', 'Sorry, no products matched your search!');
+  });
+});
