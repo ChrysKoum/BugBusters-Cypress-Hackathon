@@ -1,12 +1,14 @@
 import HomePage from "../pageObject/HomePage";
 
+beforeEach(() => {
+  cy.visit(Cypress.env('url')); // URL to the homepage of the application
+});
+
 // Test Case ID: TC01
 // Test Case Title: Review Shopping Cart and Proceed to Checkout
 
 describe("Review Shopping Cart and Proceed to Checkout", () => {
-    before(() => {
-      cy.visit(Cypress.env('url')); // URL to the homepage of the application
-    });
+
 
   it("allows a user to review the cart and proceed to checkout", () => {
 
@@ -25,7 +27,8 @@ describe("Review Shopping Cart and Proceed to Checkout", () => {
         .contains("PROCEED TO CHECKOUT")
         .should("be.visible")
         .click();
-        
+    cy.url()
+      .should("include", "/seleniumPractise/#/cart");  
   });
 });
 
@@ -33,9 +36,7 @@ describe("Review Shopping Cart and Proceed to Checkout", () => {
 // Test Case Title: Select Country and Agree to Terms and Conditions
 
 describe("Select Country and Agree to Terms and Conditions", () => {
-  before(() => {
-    cy.visit(Cypress.env('url')); // URL to the homepage of the application
-  });
+
 
   it("ensures that a user can select their country and agree to the terms and conditions", () => {
     const homePage = new HomePage();
@@ -69,9 +70,7 @@ describe("Select Country and Agree to Terms and Conditions", () => {
 // Test Case Title: Attempt to Proceed Without Agreeing to Terms & Conditions	
 
 describe("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
-  before(() => {
-    cy.visit(Cypress.env('url')); // URL to the homepage of the application
-  });
+
 
   it("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
     const homePage = new HomePage();
@@ -96,9 +95,7 @@ describe("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
 
 // Test Case ID: TC04
 describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => {
-  before(() => {
-    cy.visit(Cypress.env('url')); // URL to the homepage of the application
-  });
+
 
   it("check if the PROCEED TO CHECKOUT can be clicked without items", () => {
     cy.wait(2000);
@@ -117,9 +114,7 @@ describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => 
 // Test Case Title: Attempt to Proceed Without Selecting Country
 
 describe("Attempt to Proceed Without Selecting Country", () => {
-  before(() => {
-    cy.visit(Cypress.env("url")); // URL to the homepage of the application
-  });
+
 
   it.only("Attempt to Proceed Without Selecting Country", () => {
     const homePage = new HomePage();

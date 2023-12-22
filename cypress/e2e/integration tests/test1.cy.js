@@ -12,10 +12,12 @@
 //   });
 // });
 
+beforeEach(() => {
+  cy.visit(Cypress.env('url')); // URL to the homepage of the application
+});
+
 describe("Add Single Product to Cart", () => {
-  before(() => {
-    cy.visit(Cypress.env('url')); // URL to the homepage of the application
-  });
+
 // Test Case ID: TC01
 // Test Case Title: Add Single Product to Cart
 
@@ -65,9 +67,7 @@ describe("Add Single Product to Cart", () => {
 // Test Case Title: Add Multiple Products to Cart
 
 describe("Add Multiple Products to Cart", () => {
-  before(() => {
-    cy.visit(Cypress.env('url'));
-  });
+
 
   it('allows a user to add multiple products to the cart', () => {
     cy.wait(2000);
@@ -108,9 +108,7 @@ describe("Add Multiple Products to Cart", () => {
 // Test Case Title: Cart auto-updates without refresh
 
 describe("Cart auto-updates without refresh", () => {
-  before(() => {
-    cy.visit(Cypress.env('url'));
-  });
+
 
   it('updates the cart dynamically after adding products', () => {
     cy.wait(2000);
@@ -145,9 +143,7 @@ describe("Cart auto-updates without refresh", () => {
 // Test Case Title: Automatic Price Calculation in cart
 
 describe("Automatic Price Calculation in cart", () => {
-  before(() => {
-    cy.visit(Cypress.env('url'));
-  });
+
 
   it('should update total price in the cart when multiple products are added', () => {
     cy.wait(2000);
@@ -169,9 +165,7 @@ describe("Automatic Price Calculation in cart", () => {
 // Test Case Title: Quantity Update in cart
 
 describe("Quantity Update in cart", () => {
-  before(() => {
-    cy.visit(Cypress.env('url')); // URL to the homepage of the application
-  });
+
 
   it('validates that a user can update the quantity of a product in the cart', () => {
     cy.wait(2000);
@@ -235,9 +229,7 @@ describe("Quantity Update in cart", () => {
 // Test Case Title: Zero Quantity Error Handling=
 
 describe("Zero Quantity Error Handling", () => {
-  before(() => {
-    cy.visit(Cypress.env('url')); // URL to the homepage of the application
-  });
+
 
   it("verifies that zero quantity cannot be added to the cart", () => {
     cy.wait(2000);
@@ -282,9 +274,7 @@ describe("Zero Quantity Error Handling", () => {
 // Test Case Title: Negative Quantity Error Handling
 
 describe("Negative Quantity Error Handling", () => {
-  before(() => {
-    cy.visit(Cypress.env('url')); // URL to the homepage of the application
-  });
+
 
   it("verifies that negative quantity cannot be added to the cart", () => {
     cy.wait(2000);
@@ -331,7 +321,6 @@ describe("Negative Quantity Error Handling", () => {
 
 describe("Add Multiple Product Categories to Cart in Tablet/Mobile view", () => {
   before(() => {
-    cy.visit(Cypress.env('url'));
     // Set viewport to tablet/mobile dimensions if necessary
     cy.viewport('ipad-2');
   });
