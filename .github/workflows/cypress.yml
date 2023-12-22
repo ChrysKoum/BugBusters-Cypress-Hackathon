@@ -1,55 +1,30 @@
-name: Cypress Tests with Dependency and Artifact Caching
+name: Cypress UI Testing
 
 on: push
 
 jobs:
-  install:
-    runs-on: ubuntu-22.04
+  e2e-tests:
+    name: UI Test Execution
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Sync Repository
+        uses: actions/checkout@v2
 
-      - name: Cypress install
+      - name: Prepare Java Environment
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Launch Application
+        run: java -jar test-suite-1.0.0.jar &
+
+      - name: Execute Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-          # Disable running of tests within install job
-          runTests: false
-          build: npm run build
-
-      - name: Save build folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          if-no-files-found: error
-          path: build
+          record: true
         env:
-          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-          # in GitHub repo → Settings → Secrets → Actions
+          # Ensure the CYPRESS_RECORD_KEY is stored in GitHub Secrets
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-          GITHUB_TOKEN: ${{ secrets.GITUI_TOKEN }}
-
-  cypress-run:
-    runs-on: ubuntu-22.04
-    needs: install
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download the build folder
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: build
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm start
-          browser: chrome
-        env:
-          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-          # in GitHub repo → Settings → Secrets → Actions
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+          # Use the GitHub token secret for Cypress dashboard
           GITHUB_TOKEN: ${{ secrets.GITUI_TOKEN }}
