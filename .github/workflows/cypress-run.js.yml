@@ -1,26 +1,34 @@
-name: Cypress UI Testing
-
-on: push
-
+name: End-to-end tests
+on: [push]
 jobs:
-  e2e-tests:
-    name: UI Test Execution
-    runs-on: ubuntu-latest
+  cypress-run:
+    runs-on: ubuntu-22.04
     steps:
-      - name: Sync Repository
-        uses: actions/checkout@v2
-
-      - name: Prepare Java Environment
-        uses: actions/setup-java@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      # https://github.com/cypress-io/github-action
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+      # after the test run completes
+      # store videos and any screenshots
+      # NOTE: screenshots will be generated only if E2E test failed
+      # thus we store screenshots only on failures
+      # Alternative: create and commit an empty cypress/screenshots folder
+      # to always have something to upload
+      # The default browser, if none is specified, is the built-in Electron browser.
+      - uses: actions/upload-artifact@v3
+        if: failure()
         with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Launch Application
-        run: java -jar test-suite-1.0.0.jar &
-
-      - name: Execute Cypress Tests
-        uses: cypress-io/github-action@v6
+          name: cypress-screenshots
+          path: cypress/screenshots
+      # Test run video was always captured, so this action uses "always()" condition
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
         env:
           # Ensure the CYPRESS_RECORD_KEY is stored in GitHub Secrets
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
