@@ -4,10 +4,8 @@
   "description": "cypress hackathon for UI testing ",
   "main": "index.js",
   "scripts": {
-    "start": "my-server -p 3030",
     "cy:run": "cypress run",
-    "cy:open": "cypress open ",
-    "test": "start http://localhost:3030 cy:run"
+    "cy:open": "cypress open "
   },
   "repository": {
     "type": "git",
