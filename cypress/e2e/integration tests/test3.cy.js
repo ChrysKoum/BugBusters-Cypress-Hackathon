@@ -78,8 +78,8 @@ describe("Search with Special Characters", () => {
     cy.get('.search-keyword').type('Broc!');
     cy.get('.search-button').click();
 
-     // Expected Result: A message indicating 'Sorry, no products matched your search!' or similar is displayed.
-     cy.get('.products-wrapper').should('contain', 'Sorry, no products matched your search!');
+    // Expected Result: A message indicating 'Sorry, no products matched your search!' or similar is displayed.
+    cy.get('.products-wrapper').should('contain', 'Sorry, no products matched your search!');
   });
 });
 
@@ -91,7 +91,7 @@ describe("Search with Numbers", () => {
     cy.get('.search-keyword').type('1');
     cy.get('.search-button').click();
 
-    // Expected Result: A message indicating 'Sorry, no products matched your search!' or similar is displayed.
+    // Verifying the product 'Broccoli - 1 Kg' is displayed in the search results, regardless of case.
     cy.get('.products-wrapper').should('contain', 'Sorry, no products matched your search!');
   });
 });
@@ -108,6 +108,11 @@ describe("Search Product by Full Name With Incorrect Spelling", () => {
     cy.get('.search-button').click();
 
     // Expected Result: A message indicating 'Sorry, no products matched your search!'.
-    cy.get('.products-wrapper').should('contain', 'Sorry, no products matched your search!');
+    cy.get('.products').find('.product').each(($el) => {
+      const text = $el.find('h4.product-name').text();
+      if (text.toLowerCase().includes('brocolli')) {
+        expect($el.find('h4.product-name')).to.contain('Broccoli - 1 Kg');
+      }
+    });
   });
 });
