@@ -1,13 +1,14 @@
 {
   "name": "bugbusters-cypress-hackathon",
   "version": "1.0.0",
-  "description": "cypress hackathon for UI testing ",
+  "description": "cypress hackathon for UI testing",
   "main": "index.js",
   "scripts": {
     "cypress": "cypress run",
-    "cypress:open": "cypress open ",
+    "cypress:open": "cypress open",
     "test:unit:ci": "vitest --run",
     "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml}\"",
+    "types": "tsc --noEmit",
     "build:ci": "cross-env CYPRESS_COVERAGE=true vite build"
   },
   "repository": {
@@ -20,8 +21,14 @@
   },
   "homepage": "https://github.com/ChrysKoum/BugBusters-Cypress-Hackathon#readme",
   "dependencies": {
-    "-": "^0.0.1",
-    "cypress": "^13.6.1",
-    "save-dev": "^0.0.1-security"
+    "cypress": "^13.6.1"
+  },
+  "devDependencies": {
+    "vitest": "^0.0.1", // Use the latest version
+    "eslint": "^7.32.0", // Use the latest version
+    "prettier": "^2.3.2", // Use the latest version
+    "typescript": "^4.3.5", // Use the latest version
+    "cross-env": "^7.0.3", // Use the latest version
+    "vite": "^2.6.14" // Use the latest version
   }
 }
