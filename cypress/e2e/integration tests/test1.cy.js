@@ -21,7 +21,7 @@ describe("Add Single Product to Cart", () => {
 // Test Case ID: TC01
 // Test Case Title: Add Single Product to Cart
 
-  it('allows a user to add Broccoli to the cart', () => {
+  it.only('allows a user to add Broccoli to the cart', () => {
     cy.wait(2000);
     // Step 1: Find 'Broccoli - 1 Kg' product on the product list.
     cy.get(".products .product").first().contains("Brocolli - 1 Kg");

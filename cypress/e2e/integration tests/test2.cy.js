@@ -97,14 +97,16 @@ describe("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
 describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => {
 
 
-  it("check if the PROCEED TO CHECKOUT can be clicked without items", () => {
+  it.only("check if the PROCEED TO CHECKOUT can be clicked without items", () => {
     cy.wait(2000);
 
     // Step 1: Click on the cart icon to view the cart summary.
     cy.get(".cart-icon").click();
 
     // Step 2: Ensure the option to proceed to checkout is available.
+    cy.get(".action-block").contains("PROCEED TO CHECKOUT").should("be.disabled");
     cy.get(".action-block").contains("PROCEED TO CHECKOUT").click();
+    
   });
 });
 
@@ -116,7 +118,7 @@ describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => 
 describe("Attempt to Proceed Without Selecting Country", () => {
 
 
-  it.only("Attempt to Proceed Without Selecting Country", () => {
+  it("Attempt to Proceed Without Selecting Country", () => {
     const homePage = new HomePage();
     // Prerequisite: Go to the checkout page.
     homePage.Checkout();
