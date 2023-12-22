@@ -8,8 +8,7 @@
     "cypress:open": "cypress open ",
     "test:unit:ci": "vitest --run",
     "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml}\"",
-    "build:ci": "cross-env CYPRESS_COVERAGE=true vite build",
-    "prettier": "prettier --write '**/**.{ts,js,tsx}' '*.{json,md,yml}'",
+    "build:ci": "cross-env CYPRESS_COVERAGE=true vite build"
   },
   "repository": {
     "type": "git",
@@ -24,29 +23,5 @@
     "-": "^0.0.1",
     "cypress": "^13.6.1",
     "save-dev": "^0.0.1-security"
-  },
-  "devDependencies": {
-    "eslint": "^8.44.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-cypress": "2.12.1",
-    "eslint-plugin-prettier": "^5.0.0",
-  },
-  "eslintConfig": {
-    "env": {
-      "cypress/globals": true
-    },
-    "extends": [
-      "react-app",
-      "plugin:prettier/recommended",
-      "plugin:cypress/recommended"
-    ],
-    "plugins": [
-      "cypress",
-      "prettier"
-    ],
-    "rules": {
-      "no-unused-expressions": 0
-    }
   }
 }
