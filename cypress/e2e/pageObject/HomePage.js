@@ -1,7 +1,4 @@
 class HomePage {
-  visitHomePage() {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/");
-  }
 
   addProductToCart() {
     cy.wait(2000);

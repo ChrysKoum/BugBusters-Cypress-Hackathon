@@ -14,7 +14,7 @@
 
 describe("Add Single Product to Cart", () => {
   before(() => {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/"); // Adjust the URL to the homepage of the application
+    cy.visit(Cypress.env('url')); // URL to the homepage of the application
   });
 // Test Case ID: TC01
 // Test Case Title: Add Single Product to Cart
@@ -66,7 +66,7 @@ describe("Add Single Product to Cart", () => {
 
 describe("Add Multiple Products to Cart", () => {
   before(() => {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/");
+    cy.visit(Cypress.env('url'));
   });
 
   it('allows a user to add multiple products to the cart', () => {
@@ -109,7 +109,7 @@ describe("Add Multiple Products to Cart", () => {
 
 describe("Cart auto-updates without refresh", () => {
   before(() => {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/");
+    cy.visit(Cypress.env('url'));
   });
 
   it('updates the cart dynamically after adding products', () => {
@@ -146,7 +146,7 @@ describe("Cart auto-updates without refresh", () => {
 
 describe("Automatic Price Calculation in cart", () => {
   before(() => {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/");
+    cy.visit(Cypress.env('url'));
   });
 
   it('should update total price in the cart when multiple products are added', () => {
@@ -170,7 +170,7 @@ describe("Automatic Price Calculation in cart", () => {
 
 describe("Quantity Update in cart", () => {
   before(() => {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/"); // Adjust the URL to the homepage of the application
+    cy.visit(Cypress.env('url')); // URL to the homepage of the application
   });
 
   it('validates that a user can update the quantity of a product in the cart', () => {
@@ -236,7 +236,7 @@ describe("Quantity Update in cart", () => {
 
 describe("Zero Quantity Error Handling", () => {
   before(() => {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/"); // Adjust the URL to the homepage of the application
+    cy.visit(Cypress.env('url')); // URL to the homepage of the application
   });
 
   it("verifies that zero quantity cannot be added to the cart", () => {
@@ -283,7 +283,7 @@ describe("Zero Quantity Error Handling", () => {
 
 describe("Negative Quantity Error Handling", () => {
   before(() => {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/"); // Adjust the URL to the homepage of the application
+    cy.visit(Cypress.env('url')); // URL to the homepage of the application
   });
 
   it("verifies that negative quantity cannot be added to the cart", () => {
@@ -331,7 +331,7 @@ describe("Negative Quantity Error Handling", () => {
 
 describe("Add Multiple Product Categories to Cart in Tablet/Mobile view", () => {
   before(() => {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/");
+    cy.visit(Cypress.env('url'));
     // Set viewport to tablet/mobile dimensions if necessary
     cy.viewport('ipad-2');
   });

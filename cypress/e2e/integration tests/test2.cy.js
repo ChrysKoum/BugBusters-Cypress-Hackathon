@@ -5,9 +5,7 @@ import HomePage from "../pageObject/HomePage";
 
 describe("Review Shopping Cart and Proceed to Checkout", () => {
     before(() => {
-        const homePage = new HomePage();
-        homePage.visitHomePage(); // Corrected function call
-        // Make sure to adjust this URL to your application's homepage
+      cy.visit(Cypress.env('url')); // URL to the homepage of the application
     });
 
   it("allows a user to review the cart and proceed to checkout", () => {
@@ -36,8 +34,7 @@ describe("Review Shopping Cart and Proceed to Checkout", () => {
 
 describe("Select Country and Agree to Terms and Conditions", () => {
   before(() => {
-    const homePage = new HomePage();
-    homePage.visitHomePage(); 
+    cy.visit(Cypress.env('url')); // URL to the homepage of the application
   });
 
   it("ensures that a user can select their country and agree to the terms and conditions", () => {
@@ -73,8 +70,7 @@ describe("Select Country and Agree to Terms and Conditions", () => {
 
 describe("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
   before(() => {
-    const homePage = new HomePage();
-    homePage.visitHomePage(); 
+    cy.visit(Cypress.env('url')); // URL to the homepage of the application
   });
 
   it("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
@@ -101,7 +97,7 @@ describe("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
 // Test Case ID: TC04
 describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => {
   before(() => {
-    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/"); // Adjust the URL to the homepage of the application
+    cy.visit(Cypress.env('url')); // URL to the homepage of the application
   });
 
   it("check if the PROCEED TO CHECKOUT can be clicked without items", () => {
@@ -122,8 +118,7 @@ describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => 
 
 describe("Attempt to Proceed Without Selecting Country", () => {
   before(() => {
-    const homePage = new HomePage();
-    homePage.visitHomePage();
+    cy.visit(Cypress.env("url")); // URL to the homepage of the application
   });
 
   it.only("Attempt to Proceed Without Selecting Country", () => {
