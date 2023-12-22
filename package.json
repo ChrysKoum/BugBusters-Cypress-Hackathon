@@ -4,8 +4,8 @@
   "description": "cypress hackathon for UI testing ",
   "main": "index.js",
   "scripts": {
-    "cypress": "cypress run --e2e",
-    "cypress:open": "cypress open --e2e"
+    "cypress": "cypress run",
+    "cypress:open": "cypress open "
   },
   "repository": {
     "type": "git",
