@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "cypress": "cypress run",
-    "cypress:open": "cypress open "
+    "cypress:open": "cypress open ",
+    "test:unit:ci": "vitest --run",
+    "build:ci": "cross-env CYPRESS_COVERAGE=true vite build"
   },
   "repository": {
     "type": "git",
@@ -21,4 +23,5 @@
     "cypress": "^13.6.1",
     "save-dev": "^0.0.1-security"
   }
+
 }

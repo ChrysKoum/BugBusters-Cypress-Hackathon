@@ -1,5 +1,16 @@
 // Test Case ID: TC01
 // Test Case Title: Add Single Product to Cart
+// before(function() {
+//   cy.request('DELETE', 'http://localhost:7001/api/v1/contacts/delete');
+// });
+
+// beforeEach(function() {
+//   cy.visit(Cypress.env('url') + '#/contact');
+
+//   cy.fixture('example').then(function(data) {
+//     this.data = data;
+//   });
+// });
 
 describe("Add Single Product to Cart", () => {
   before(() => {

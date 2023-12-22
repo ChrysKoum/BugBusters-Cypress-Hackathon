@@ -30,6 +30,8 @@ jobs:
           name: cypress-videos
           path: cypress/videos
         env:
+          # Ensure the CYPRESS_PROJECT_ID is stored in GitHub Secrets
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           # Ensure the CYPRESS_RECORD_KEY is stored in GitHub Secrets
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # Use the GitHub token secret for Cypress dashboard
