@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-              cypress run --record --key CYPRESS_RECORD_KEY
+
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       # https://github.com/cypress-io/github-action
@@ -14,6 +14,15 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           record: true
+          # Here we pass the Cypress record key from the GitHub Secrets
+          key: ${{ secrets.CYPRESS_RECORD_KEY }}
+        # Set environment variables for Cypress
+        env:
+          # Ensure the CYPRESS_PROJECT_ID is stored in GitHub Secrets
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          # Use the GitHub token secret for Cypress dashboard
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # after the test run completes
       # store videos and any screenshots
       # NOTE: screenshots will be generated only if E2E test failed
@@ -26,16 +35,10 @@ jobs:
         with:
           name: cypress-screenshots
           path: cypress/screenshots
+
       # Test run video was always captured, so this action uses "always()" condition
       - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: cypress-videos
           path: cypress/videos
-        env:
-          # Ensure the CYPRESS_PROJECT_ID is stored in GitHub Secrets
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          # Ensure the CYPRESS_RECORD_KEY is stored in GitHub Secrets
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # Use the GitHub token secret for Cypress dashboard
-          GITHUB_TOKEN: ${{ secrets.GITUI_TOKEN }}
