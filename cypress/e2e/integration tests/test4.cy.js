@@ -2,6 +2,7 @@
 // // Test Case ID: TC4_01
 // // Test Case Title: Verify Top Deals Display
 
+
 describe("Verify Top Deals Display", () => {
     before(() => {
       // Adjust the URL to the homepage of the application
@@ -124,4 +125,26 @@ describe("Verify Top Deals Filtering with Search Bar", () => {
   });
 });
 
+// Test Case ID: TC4_05
+// Test Case Title: Ensure that the user can filter the top deals list.
 
+describe("Verify Top Deals Filtering with Search Bar", () => {
+  before(() => {
+    // Prerequisite: Ensure the user is on the deals page
+    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers");
+  });
+
+  it("ensures that the user can filter the top deals list with the search bar", () => {
+    // Step 1: Enter a search term in the search field in the top deals section.
+    const searchTerm = 'Mango'; 
+    cy.get('#search-field').type(`${searchTerm}{enter}`);
+
+    // Expected Result: The list of top deals is filtered.
+    cy.get('tbody tr').each(($row) => {
+      // Assuming that the first column contains the name of the item
+      cy.wrap($row).find('td').first().should('contain', searchTerm);
+    });
+
+    cy.get('tbody tr').not(`:contains("${searchTerm}")`).should('have.length', 0);
+  });
+});
