@@ -97,7 +97,7 @@ describe("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
 describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => {
 
 
-  it("check if the PROCEED TO CHECKOUT can be clicked without items", () => {
+  it.only("check if the PROCEED TO CHECKOUT can be clicked without items", () => {
     cy.wait(2000);
 
     // Step 1: Click on the cart icon to view the cart summary.
