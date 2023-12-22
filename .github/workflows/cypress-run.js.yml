@@ -1,28 +1,43 @@
-name: Cypress UI Testing
+name: Cypress Tests with Dependency and Artifact Caching
 
 on: push
 
 jobs:
-  e2e-tests:
-    name: UI Test Execution
-    runs-on: ubuntu-latest
+  install:
+    runs-on: ubuntu-22.04
     steps:
-      - name: Sync Repository
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Prepare Java Environment
-        uses: actions/setup-java@v2
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Launch Application
-        run: java -jar test-suite-1.0.0.jar &
-
-      - name: Execute Cypress Tests
+      - name: Cypress install
         uses: cypress-io/github-action@v6
-        env:
-          # Ensure the CYPRESS_RECORD_KEY is stored in GitHub Secrets
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # Use the GitHub token secret for Cypress dashboard
-          GITHUB_TOKEN: ${{ secrets.GITUI_TOKEN }}
+        with:
+          # Disable running of tests within install job
+          runTests: false
+          build: npm run build
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          if-no-files-found: error
+          path: build
+
+  cypress-run:
+    runs-on: ubuntu-22.04
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          browser: chrome
