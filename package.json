@@ -9,7 +9,6 @@
     "test:unit:ci": "vitest --run",
     "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml}\"",
     "build:ci": "cross-env CYPRESS_COVERAGE=true vite build",
-    "prettier": "prettier --write '**/**.{ts,js,tsx}' '*.{json,md,yml}'"
   },
   "repository": {
     "type": "git",
