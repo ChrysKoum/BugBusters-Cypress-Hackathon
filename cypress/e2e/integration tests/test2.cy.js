@@ -93,12 +93,7 @@ describe("Complete Order for the products in the cart", () => {
 // Test Case ID: TC04
 // Test Case Title: Check if the PROCEED TO CHECKOUT can be clicked without items
 
-<<<<<<< HEAD
-// Test Case ID: TC04
 describe("Complete Order for the products in the cart", () => {
-=======
-describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => {
->>>>>>> f3427b62f9dcbb5d969fd50cf4ed37256cd561c5
 
 
   it("check if the PROCEED TO CHECKOUT can be clicked without items", () => {
