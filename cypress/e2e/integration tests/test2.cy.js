@@ -93,7 +93,6 @@ describe("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
 // Test Case ID: TC04
 // Test Case Title: Check if the PROCEED TO CHECKOUT can be clicked without items
 
-// Test Case ID: TC04
 describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => {
 
 
