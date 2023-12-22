@@ -82,3 +82,16 @@ describe("Search with Special Characters", () => {
      cy.get('.products-wrapper').should('contain', 'Sorry, no products matched your search!');
   });
 });
+
+// Test Case ID: TC3_06
+// Test Case Title: Search with Numbers
+describe("Search with Numbers", () => {
+  it.only("ensures that the search functionality can handle numbers", () => {
+    // Step 1: Enter '1' in the search bar.
+    cy.get('.search-keyword').type('1');
+    cy.get('.search-button').click();
+
+    // Expected Result: A message indicating 'Sorry, no products matched your search!' or similar is displayed.
+    cy.get('.products-wrapper').should('contain', 'Sorry, no products matched your search!');
+  });
+});
