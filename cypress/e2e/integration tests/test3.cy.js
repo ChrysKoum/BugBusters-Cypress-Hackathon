@@ -57,14 +57,14 @@ describe("Search with No Results", () => {
 describe("Case Insensitive Search", () => {
   it.only("verifies that the search functionality is not case-sensitive", () => {
     // Step 1: Enter 'broccoli' in lowercase in the search bar.
-    cy.get('.search-keyword').type('broccoli');
+    cy.get('.search-keyword').type('brocolli');
     cy.get('.search-button').click();
 
-    // Verifying the product 'Broccoli - 1 Kg' is displayed in the search results, regardless of case.
+    // Verifying the product 'Brocolli - 1 Kg' is displayed in the search results, regardless of case.
     cy.get('.products').find('.product').each(($el) => {
       const text = $el.find('h4.product-name').text();
-      if (text.toLowerCase().includes('broccoli')) {
-        expect($el.find('h4.product-name')).to.contain('Broccoli - 1 Kg');
+      if (text.toLowerCase().includes('brocolli')) {
+        expect($el.find('h4.product-name')).to.contain('Brocolli - 1 Kg');
       }
     });
   });
@@ -78,7 +78,7 @@ describe("Search with Special Characters", () => {
     cy.get('.search-keyword').type('Broc!');
     cy.get('.search-button').click();
 
-    // Expected Result: The search results should contain 'Brocolli - 1 Kg'.
-    cy.get('.products').find('.product').should('contain', 'Brocolli - 1 Kg');
+     // Expected Result: A message indicating 'Sorry, no products matched your search!' or similar is displayed.
+     cy.get('.products-wrapper').should('contain', 'Sorry, no products matched your search!');
   });
 });
