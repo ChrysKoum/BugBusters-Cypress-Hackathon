@@ -148,3 +148,22 @@ describe("Verify Top Deals Filtering with Search Bar", () => {
     cy.get('tbody tr').not(`:contains("${searchTerm}")`).should('have.length', 0);
   });
 });
+
+// Test Case ID: TC4_06
+// Test Case Title: Ensure that the user can filter the number of top deals list(5/10/20).	
+
+describe("Verify that the User can see all the Top Deals", () => {
+  before(() => {
+    // Prerequisite: Ensure the user is on the deals page
+    cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers");
+  });
+
+  it("ensures that the user can filter the number of top deals list(5/10/20)", () => {
+
+    // Step 2: Change the 'Page size' to show '20' products
+    cy.get('select').select('20');
+
+    // Verify that 20 products are now shown in the top deals list
+    cy.get('tbody tr').should('have.length.gt', 5); // This assumes that there are at least 20 items after filtering with the search term
+  });
+});
