@@ -7,7 +7,7 @@
     "cypress": "cypress run",
     "cypress:open": "cypress open ",
     "test:unit:ci": "vitest --run",
-    "build:ci": "cross-env CYPRESS_COVERAGE=true vite build",
+    "build:ci": "cross-env CYPRESS_COVERAGE=true vite build"
   },
   "repository": {
     "type": "git",
