@@ -1,6 +1,3 @@
-beforeEach(() => {
-    cy.visit(Cypress.env('url')); // URL to the homepage of the application
-  });
 
 // // Test Case ID: TC4_01
 // // Test Case Title: Verify Top Deals Display
@@ -47,24 +44,24 @@ describe("Verify Top Deals Display", () => {
       // Prerequisite: Ensure the user is on the deals page
       cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers");
     });
-  
+
     it.only("ensures that the top deals list can be sorted correctly by price", () => {
-      // Step 1: Click on the 'Price' column header in the top deals list.
-      cy.get("th").contains("Price").click();
-  
+      // Step 1: Wait for the 'Price' column header to be visible and click on it
+      cy.contains("th", "Price").should("be.visible").click();
+
       // Expected Result: The list is sorted by price in ascending order.
       // Capture the first price after sorting to compare later
       cy.get("tbody tr").first().find("td").eq(1).invoke('text').then((text1) => {
         const firstPrice = parseFloat(text1);
-  
+
         // Click on the 'Price' column header again to sort by descending order
-        cy.get("th").contains("Price").click();
-  
+        cy.contains("th", "Price").should("be.visible").click();
+
         // Expected Result: The list is sorted by price in descending order.
         // Capture the first price after re-sorting to compare
         cy.get("tbody tr").first().find("td").eq(1).invoke('text').should((text2) => {
           const secondPrice = parseFloat(text2);
-          expect(secondPrice).to.be.lessThan(firstPrice); // Verify the price is now less than the first one, indicating descending order
+          expect(firstPrice).to.be.lessThan(secondPrice); // Verify the price is now less than the first one, indicating descending order
         });
       });
     });
