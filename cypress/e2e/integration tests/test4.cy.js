@@ -1,29 +1,39 @@
+// // Test Case ID: TC4_01
+// // Test Case Title: Verify Top Deals Display
+
 describe("Verify Top Deals Display", () => {
     before(() => {
       cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/");
     });
   
     it("ensures that the top deals are correctly displayed on the page", () => {
+      // Step 1: Navigate to the 'Top Deals' section of the website.
       cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers");
   
       cy.get(".products").find(".table-bordered").as("dealsTable");
       
+      // Ensure the table is visible
       cy.get("@dealsTable").should("be.visible");
   
+      // Check the number of rows in the table - expecting more than 1 row
       cy.get("@dealsTable").find("tbody tr").should("have.length.at.least", 1);
   
+      // Verify the headers of the table
       cy.get("@dealsTable").find("thead tr").first().within(() => {
         cy.get("th").eq(0).should("contain", "Veg/fruit name");
         cy.get("th").eq(1).should("contain", "Price");
         cy.get("th").eq(2).should("contain", "Discount price");
       });
   
+      // Verify that each row contains the expected data
       cy.get("@dealsTable").find("tbody tr").each(($row) => {
-        cy.wrap($row).find("td").should("have.length", 3);
+        cy.wrap($row).find("td").should("have.length", 3); // Each row should have 3 cells
       });
     });
   });
-  
+
+// Test Case ID: TC4_02
+// Test Case Title: Verify Top Deals Sorting
 
   describe("Verify Top Deals Sorting", () => {
     before(() => {
@@ -31,37 +41,54 @@ describe("Verify Top Deals Display", () => {
     });
 
     it("ensures that the top deals list can be sorted correctly by price", () => {
+      // Step 1: Wait for the 'Price' column header to be visible and click on it
       cy.contains("th", "Price").should("be.visible").click();
 
+      // Expected Result: The list is sorted by price in ascending order.
+      // Capture the first price after sorting to compare later
       cy.get("tbody tr").first().find("td").eq(1).invoke('text').then((text1) => {
         const firstPrice = parseFloat(text1);
 
+        // Click on the 'Price' column header again to sort by descending order
         cy.contains("th", "Price").should("be.visible").click();
 
+        // Expected Result: The list is sorted by price in descending order.
+        // Capture the first price after re-sorting to compare
         cy.get("tbody tr").first().find("td").eq(1).invoke('text').should((text2) => {
           const secondPrice = parseFloat(text2);
-          expect(firstPrice).to.be.lessThan(secondPrice);
+          expect(firstPrice).to.be.lessThan(secondPrice); // Verify the price is now less than the first one, indicating descending order
         });
       });
     });
   });
 
+// Test Case ID: TC4_03
+// Test Case Ensure that pagination is functioning correctly in the top deals section.	
+  
+
 describe("Verify Pagination of Top Deals", () => {
   before(() => {
+    // Prerequisite: Ensure the user is on the deals page
     cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers");
   });
 
   it("ensures that pagination is functioning correctly", () => {
+    // Step 1: Click on the 'Next' pagination control.
     cy.get('.pagination').contains('Next').click();
 
+    // Expected Result: The next page of top deals is displayed.
     cy.get('.pagination .active a').invoke('text').then((text) => {
       const currentPageNumber = parseInt(text, 10);
 
+      // Assert that the page number is incremented.
       expect(currentPageNumber).to.be.greaterThan(1);
 
+      // Optional: Check if the deals have changed by comparing the first item on the next page to what it was before
+      // This assumes that the deals are unique on every page and will not work if items can repeat across pages.
       cy.get('tbody tr').first().find('td').first().invoke('text').should((newFirstDeal) => {
-        expect(newFirstDeal).to.not.equal('Pineapple');
+        expect(newFirstDeal).to.not.equal('Pineapple'); // Assuming 'Pineapple' was the first deal on the first page
       });
     });
   });
 });
+  
