@@ -7,10 +7,10 @@ beforeEach(() => {
 // Test Case ID: TC01
 // Test Case Title: Review Shopping Cart and Proceed to Checkout
 
-describe("Review Shopping Cart and Proceed to Checkout", () => {
+describe("Complete Order for the products in the cart", () => {
 
 
-  it("allows a user to review the cart and proceed to checkout", () => {
+  it("Review Shopping Cart and Proceed to Checkout", () => {
 
     const homePage = new HomePage();
     // Step 1: Add a product to the cart.
@@ -35,10 +35,10 @@ describe("Review Shopping Cart and Proceed to Checkout", () => {
 // Test Case ID: TC02
 // Test Case Title: Select Country and Agree to Terms and Conditions
 
-describe("Select Country and Agree to Terms and Conditions", () => {
+describe("Complete Order for the products in the cart", () => {
 
 
-  it("ensures that a user can select their country and agree to the terms and conditions", () => {
+  it("Select Country and Agree to Terms and Conditions", () => {
     const homePage = new HomePage();
     // Prerequisite: Go to the checkout page.
     homePage.Checkout();
@@ -69,7 +69,7 @@ describe("Select Country and Agree to Terms and Conditions", () => {
 // Test Case ID: TC03
 // Test Case Title: Attempt to Proceed Without Agreeing to Terms & Conditions	
 
-describe("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
+describe("Complete Order for the products in the cart", () => {
 
 
   it("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
@@ -93,10 +93,15 @@ describe("Attempt to Proceed Without Agreeing to Terms & Conditions", () => {
 // Test Case ID: TC04
 // Test Case Title: Check if the PROCEED TO CHECKOUT can be clicked without items
 
+<<<<<<< HEAD
+// Test Case ID: TC04
+describe("Complete Order for the products in the cart", () => {
+=======
 describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => {
+>>>>>>> f3427b62f9dcbb5d969fd50cf4ed37256cd561c5
 
 
-  it.only("check if the PROCEED TO CHECKOUT can be clicked without items", () => {
+  it("check if the PROCEED TO CHECKOUT can be clicked without items", () => {
     cy.wait(2000);
 
     // Step 1: Click on the cart icon to view the cart summary.
@@ -109,12 +114,27 @@ describe("Check if the PROCEED TO CHECKOUT can be clicked without items", () => 
   });
 });
 
+// Test Case ID: TC05
+// Test Case Title: Navigate Away from Cart and Return
+
+describe("Complete Order for the products in the cart", () => {
 
 
-// Test Case ID: TC07
+  it("Navigate Away from Cart and Return", () => {
+    // Prerequisite: Go to the checkout page.
+    const homePage = new HomePage();
+    homePage.Checkout();
+    cy.go('back')
+    cy.get(".cart-info").within(() => {
+      cy.get("strong").eq(0).should("contain", "1"); // Items should be 1
+    });
+  });
+});
+
+// Test Case ID: TC06
 // Test Case Title: Attempt to Proceed Without Selecting Country
 
-describe("Attempt to Proceed Without Selecting Country", () => {
+describe("Complete Order for the products in the cart", () => {
 
 
   it("Attempt to Proceed Without Selecting Country", () => {
@@ -127,5 +147,11 @@ describe("Attempt to Proceed Without Selecting Country", () => {
 
     // Step 1: Click the 'Proceed' button without selecting an option from the 'Choose Country' dropdown.
     cy.get("button").contains("Proceed").click();
+    cy.contains("Please select a country").should("be.visible");
+    //cy.get(".errorAlert").contains("Please select a country").should("be.visible");
+    cy.wait(4000);
+    cy.url()
+      .should("include", "/seleniumPractise/#/country");
+
   });
 });
