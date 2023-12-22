@@ -73,27 +73,29 @@ describe("Verify Top Deals Display", () => {
 
 describe("Verify Pagination of Top Deals", () => {
   before(() => {
-    // Prerequisite: Ensure the user is on the deals page
+    
     cy.visit("https://rahulshettyacademy.com/seleniumPractise/#/offers");
   });
 
   it("ensures that pagination is functioning correctly", () => {
-    // Step 1: Click on the 'Next' pagination control.
-    cy.get('.pagination').contains('Next').click();
+    
+    
+    cy.get('a[aria-label="Next"]').click();
 
-    // Expected Result: The next page of top deals is displayed.
+    cy.wait(1000);
+    
     cy.get('.pagination .active a').invoke('text').then((text) => {
       const currentPageNumber = parseInt(text, 10);
-
-      // Assert that the page number is incremented.
+      cy.wait(1000);
+      
       expect(currentPageNumber).to.be.greaterThan(1);
-
-      // Optional: Check if the deals have changed by comparing the first item on the next page to what it was before
-      // This assumes that the deals are unique on every page and will not work if items can repeat across pages.
+      cy.wait(1000);
+      
       cy.get('tbody tr').first().find('td').first().invoke('text').should((newFirstDeal) => {
-        expect(newFirstDeal).to.not.equal('Pineapple'); // Assuming 'Pineapple' was the first deal on the first page
+        expect(newFirstDeal).to.not.equal('Wheat');
       });
     });
   });
+  
 });
   
