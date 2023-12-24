@@ -6,7 +6,7 @@ Welcome to the BugBusters Cypress Integration Tests repository! This project was
 ## Team Members
 - **Χρυσόστομος Κουμίδης** - [chrysostk@ece.auth.gr](mailto:chrysostk@ece.auth.gr)
 - **Μιχάλης Δαδόπουλος** - [mdadopoulos@gmail.com](mailto:mdadopoulos@gmail.com)
-- **Δήμος Κομπιτσελίδης** - [kompitse@ece.auth.gr](mailto:kompitse@ece.auth.gr)
+- **Δήμος Κομπιτσελίδης** - [kompitse@ece.auth.gr](mailto:komdimos@gmail.com)
 - **Καλταπανίδης Τρύφων** - [tryfkalt@ece.auth.gr](mailto:tryfkalt@ece.auth.gr)
 
 ## Project Structure
