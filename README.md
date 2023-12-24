@@ -6,7 +6,7 @@ Welcome to the BugBusters Cypress Integration Tests repository! This project was
 ## Team Members
 - **Χρυσόστομος Κουμίδης** - [chrysostk@ece.auth.gr](mailto:chrysostk@ece.auth.gr)
 - **Μιχάλης Δαδόπουλος** - [mdadopoulos@gmail.com](mailto:mdadopoulos@gmail.com)
-- **Δήμος Κομπιτσελίδης** - [kompitse@ece.auth.gr](mailto:komdimos@gmail.com)
+- **Δήμος Κομπιτσελίδης** - [komdimos@gmail.com](mailto:komdimos@gmail.com)
 - **Καλταπανίδης Τρύφων** - [tryfkalt@ece.auth.gr](mailto:tryfkalt@ece.auth.gr)
 
 ## Project Structure
@@ -21,7 +21,7 @@ For a detailed overview of all the test scenarios and their outcomes, please ref
 To run these tests locally, follow these steps:
 1. Clone the repository.
 2. Install the dependencies using `npm install`.
-3. Run the tests via the Cypress Test Runner with `npx cypress open` or headlessly with `npx cypress run`.
+3. Run the tests via the Cypress Test Runner with `cy:run` and `cy:open`.
 
 ## Contributing
 This project is a collaborative effort for the Netcompany Intrasoft competition. While we are not actively seeking contributions, any insights or suggestions are welcome.
