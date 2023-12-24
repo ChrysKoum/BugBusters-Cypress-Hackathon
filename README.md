@@ -4,7 +4,7 @@
 Welcome to the BugBusters Cypress Integration Tests repository! This project was developed as part of a competition hosted by Netcompany Intrasoft, where our team was tasked with creating a series of integration tests for the website [Rahul Shetty Academy's Practice Page](https://rahulshettyacademy.com/seleniumPractise/#/). Our tests are written in JavaScript using the Cypress framework, demonstrating our proficiency in automated testing and software quality assurance.
 
 ## Team Members
-- **Χρυσόστομος Κουμίδης** - [chrysostk@ece.auth.gr](mailto:chrysostk@ece.auth.gr)
+- **Χρυσόστομος Κουμίδης** - [chyrkoum@gmail.com](mailto:chyrkoum@gmail.com)
 - **Μιχάλης Δαδόπουλος** - [mdadopoulos@gmail.com](mailto:mdadopoulos@gmail.com)
 - **Δήμος Κομπιτσελίδης** - [komdimos@gmail.com](mailto:komdimos@gmail.com)
 - **Καλταπανίδης Τρύφων** - [tryfkalt@ece.auth.gr](mailto:tryfkalt@ece.auth.gr)
